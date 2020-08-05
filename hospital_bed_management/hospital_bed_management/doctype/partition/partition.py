@@ -5,6 +5,9 @@
 from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
+from hospital_bed_management.hospital_bed_management.utils import autoname_structure
 
 class Partition(Document):
-	pass
+	def validate(self):
+		self.name = autoname_structure(self, self.partition_name)
+
