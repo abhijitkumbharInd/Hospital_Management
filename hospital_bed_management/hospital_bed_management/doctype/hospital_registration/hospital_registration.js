@@ -9,6 +9,10 @@ frappe.ui.form.on('Hospital Registration', {
 		}
 	},
 
+	validate: function(frm){
+		frm.trigger('check_duplicates');		
+	},
+
 	//Calculate I and W reserved beds from Percentage
 	total_operational_beds: function(frm){
 		frappe.call({
@@ -30,5 +34,18 @@ frappe.ui.form.on('Hospital Registration', {
 				}
 			}
 		});
+	},
+
+	check_duplicates(frm){
+		table_data = frm.doc.hospital_stucure
+		console.log("table_data", table_data)
+		item_list = []
+		forEach(table_data, function(e){
+			item_list.push(e['parameter'])
+		})
+		item_list_set = new Set(item_list)
+		if (item_list.length != [...item_list_set].length){
+			frappe.throw("Duplicate parameters not allowed in Hospital Structure")
+		}
 	}
 });
