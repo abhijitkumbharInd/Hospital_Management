@@ -35,6 +35,15 @@ frappe.ui.form.on('Bed Creation', {
 	toggle_hide_fields: function(frm, field_list, option){
 		field_list.forEach(function(e){
 			frm.set_df_property(e, "read_only", option);
+			frm.refresh_field(e)
+		})
+		refresh_many(field_list);
+	},
+
+	toggle_mandatory_fields: function(frm, field_list, option){
+		field_list.forEach(function(e){
+			frm.set_df_property(e, "reqd", option);
+			frm.refresh_field(e)
 		})
 		refresh_many(field_list);
 	},
@@ -52,6 +61,7 @@ frappe.ui.form.on('Bed Creation', {
 				callback: function(r) {
 					if(r.message) {
 						frm.events.toggle_hide_fields(frm, r.message, 0)
+						frm.events.toggle_mandatory_fields(frm, r.message, 1)
 					}
 				}
 			});
