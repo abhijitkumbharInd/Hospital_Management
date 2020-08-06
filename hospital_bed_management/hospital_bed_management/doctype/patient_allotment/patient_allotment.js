@@ -60,9 +60,12 @@ frappe.ui.form.on('Patient Allotment', {
 		// if(!(cur_frm.doc["income_document"]).length){
 		// 	frappe.throw(__("Please upload Income Verification Documents first for Recommendation..."));
 		// }
-		if((cur_frm.doc["income_document"]).length < 2){
-			frappe.throw(__("Please upload at least 2 Income Verification Documents for Recommendation..."));
-		}
+
+		// Removed below code in requirement Ticket ID: #9056
+
+		// if((cur_frm.doc["income_document"]).length < 2){
+		// 	frappe.throw(__("Please upload at least 2 Income Verification Documents for Recommendation..."));
+		// }
 		$.each(cur_frm.doc["income_document"] || [], function(i, d) {
 			if(d.verified_against_income==1){
 				count = count + 1
