@@ -3,6 +3,6 @@
 
 frappe.ui.form.on('Bed', {
 	refresh: function(frm) {
-
+		frm.disable_save()
 	}
 });

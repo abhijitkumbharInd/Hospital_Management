@@ -81,7 +81,10 @@ def update_hospital_beds_availability(allotment_id):
 	user = frappe.db.get_values("Patient Allotment", {"name": allotment_id}, ["owner","patient_name", "hospital_name","patient_type"],as_dict=True)
 	message = """Dear Sir/Madam, \n \n You have recommended a patient to our hospital - '%s'. \n Bed Allocated to your recommended patient - '%s'. \n \n Regards, \n %s """ %(user[0]['hospital_name'], user[0]['patient_name'], user[0]['hospital_name'])
 	if user:
-		frappe.sendmail(recipients=user[0]['owner'], content=message, subject='Patient Allocation Notification')
+		try:
+			frappe.sendmail(recipients=user[0]['owner'], content=message, subject='Patient Allocation Notification')
+		except Exception as e:
+			pass
 
 # Update patient status on bed rejection
 @frappe.whitelist()
