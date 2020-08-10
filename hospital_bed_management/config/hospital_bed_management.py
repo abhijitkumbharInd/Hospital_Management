@@ -25,6 +25,60 @@ def get_data():
 					"description": _("Hospital Registration Database"),
 					"hide_count": True
 				},
+				{
+					"type": "doctype",
+					"name": "Bed Creation",
+					"label": _("Bed Creation"),
+					"description": _("Bed Creation"),
+					"hide_count": True
+				}
+			]
+		},
+			{
+			"label": _("Hospital Structure"),
+			"items": [
+				{
+					"type": "doctype",
+					"name": "Block",
+					"label": _("Block"),
+					"description": _("Hospital Stucture"),
+					"hide_count": True
+				},
+				{
+					"type": "doctype",
+					"name": "Wing",
+					"label": _("Wing"),
+					"description": _("Hospital Stucture"),
+					"hide_count": True
+				},
+				{
+					"type": "doctype",
+					"name": "Building",
+					"label": _("Building"),
+					"description": _("Hospital Stucture"),
+					"hide_count": True
+				},
+				{
+					"type": "doctype",
+					"name": "Floor",
+					"label": _("Floor"),
+					"description": _("Hospital Stucture"),
+					"hide_count": True
+				},
+				{
+					"type": "doctype",
+					"name": "Room",
+					"label": _("Room"),
+					"description": _("Hospital Stucture"),
+					"hide_count": True
+				},
+				{
+					"type": "doctype",
+					"name": "Partition",
+					"label": _("Partition"),
+					"description": _("Hospital Stucture"),
+					"hide_count": True
+				},
 			]
 		},
 		{
@@ -89,6 +143,13 @@ def get_data():
 					"description": _("Global Dashboard"),
 					"hide_count": True
 				},
+				{
+					"type": "report",
+					"name": "Bed Availability",
+					"doctype": "Bed",
+					"is_query_report": True,
+				},
+
 			]
 		}
 		# {

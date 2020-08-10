@@ -22,7 +22,6 @@ def create_beds(doc):
 	doc = json.loads(doc)
 	bed_name = ""
 	bed_prefix = frappe.db.get_value("Hospital Registration", {"name":doc.get('hospital')}, "hospital_code")+"-"
-
 	hospital_structure = get_hospital_structure(doc.get('hospital'))
 	current_beds = [i.get('name') for i in frappe.db.get_values("Bed", {"hospital_name":doc.get('hospital')}, "name", as_dict=1)]
 	for structure in hospital_structure:
@@ -31,7 +30,7 @@ def create_beds(doc):
 
 	bed_prefix = bed_prefix[:-1]
 	search_prefix = bed_prefix+'-BED-'	
-	existing_bed_list = [i for i in current_beds if search_prefix in i]
+	existing_bed_list = [i for i in current_beds if search_prefix.upper() in i]
 	if len(existing_bed_list):
 		existing_bed_list.sort()
 		current_beds = int(existing_bed_list[-1:][0].split('-')[-1:][0])+1
